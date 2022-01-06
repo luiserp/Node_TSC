@@ -56,8 +56,10 @@ export const annadirProductoAlcarrito = async(req: Request, res: Response) => {
 }
 
 export const eliminarProductoDelCarrito = async (req: Request, res: Response) =>{
+
     const { usuario } = req;
     const { id } = req.params;
+    
     const producto = await Producto.findByPk(id);
     try{
         const compra = await Carrito.findOne({

@@ -1,10 +1,13 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import db from "../db/conexion";
 
-const Producto = db.define('Producto', {
+class Producto extends Model {}
+
+Producto.init({
     nombre: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     precio: {
         type: DataTypes.INTEGER,
@@ -14,6 +17,9 @@ const Producto = db.define('Producto', {
         type: DataTypes.INTEGER,
         allowNull: false
     }
+},{
+    sequelize: db,
+    modelName: 'Productos'
 });
 
 // Crear la tabla y en caso de q exista la altera para que coincida con el modelo
